@@ -1,37 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Current Shift<span class="sr-only">(current)</span></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Scans</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Overruled</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Spills</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Week View</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Employees</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Inspection Points</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Daily Percentage</a>
-      </li>
-    </ul>
-  </div>
-</nav>
 
 <div class="row department-cards">
 
@@ -70,14 +39,6 @@
             </div>                       
         </div>
     </div>
-
-    <div class="row"></span>">
-  <div class="col-md-2" style="border: 3px solid black; font-size: 150%;">Amount of This shift scans:</div>
-  <div class="col-md-2" style="border: 3px solid black; font-size: 150%;">Amount of Yesterdays scans:</div>
-  <div class="col-md-2" style="border: 3px solid black; font-size: 150%;">Amount of this week scans:</div>
-  <div class="col-md-2" style="border: 3px solid black; font-size: 150%;">Amount of overruled used this week:</div>
-  <div class="col-md-2" style="border: 3px solid black; font-size: 150%;">Amount of spills this week is:</div> 
-</div>
 
 
 </div>
