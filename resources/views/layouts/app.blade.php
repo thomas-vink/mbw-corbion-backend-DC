@@ -56,7 +56,8 @@
                                 </li>
                             @endif
                         @else
-                        <a class="navbar-brand" href="#">Current Shift<span class="sr-only">(current)</span></a>
+
+                        <a class="navbar-brand" href="{{ route('home') }}">{{ __('Current Shift') }}</a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                             </button>
@@ -78,7 +79,7 @@
                                     <a class="nav-link" href="#">Employees</a>
                                   </li>
                                   <li class="nav-item">
-                                    <a class="nav-link" href="#">Inspection Points</a>
+                                    <a class="nav-link" href="{{ route('scandepartment.index') }}">{{ __('ScanDepartments') }}</a>
                                   </li>
                                   <li class="nav-item">
                                     <a class="nav-link" href="#">Daily Percentage</a>
