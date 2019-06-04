@@ -15,7 +15,12 @@ class CreateScanpointsTable extends Migration
     {
         Schema::create('scanpoints', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+            $table->mediumText('barcode');
+            $table->mediumText('locatie');
+
+            //foreign key 
+            $table->unsignedBigInteger('department_id');
+            $table->foreign('department_id')->references('id')->on('scandepartments');
         });
     }
 

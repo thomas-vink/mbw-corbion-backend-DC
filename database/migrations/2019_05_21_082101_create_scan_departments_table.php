@@ -12,7 +12,7 @@ class CreateScanDepartmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('scan_departments', function (Blueprint $table) {
+        Schema::create('scandepartments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 100);
         });
