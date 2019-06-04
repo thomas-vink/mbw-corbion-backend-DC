@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Scanpoint;
+use App\ScanDepartment;
 use Illuminate\Http\Request;
 
 class ScanpointController extends Controller
@@ -13,8 +14,10 @@ class ScanpointController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('scanpoints.index');
+    {   
+        $scanpoints = Scanpoint::all();
+        $scandepartments = ScanDepartment::all();
+        return view('scanpoints.index')->with(['scandepartments' => $scandepartments, 'scanpoints' => $scanpoints]);
     }
 
     /**
