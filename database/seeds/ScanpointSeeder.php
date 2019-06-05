@@ -14,13 +14,13 @@ class ScanpointSeeder extends Seeder
         DB::table('scanpoints')->insert([
             'id'        => '1',
             'barcode'   => 'p0111',
-            'locatie'   => 'testlocatie1',
+            'location'   => 'testlocatie1',
             'department_id' => '1',
         ]);
         DB::table('scanpoints')->insert([
             'id'        => '2',
             'barcode'   => 'p0222',
-            'locatie'   => 'testlocatie2',
+            'location'   => 'testlocatie2',
             'department_id' => '2'
         ]);
     }

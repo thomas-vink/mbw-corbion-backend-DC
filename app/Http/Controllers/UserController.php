@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Scanpoint;
-use App\ScanDepartment;
 use Illuminate\Http\Request;
 
-class ScanpointController extends Controller
+use App\User;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
+
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +18,8 @@ class ScanpointController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $scanpoints = Scanpoint::all();
-        $scandepartments = ScanDepartment::all();
-        return view('scanpoints.index')->with(['scandepartments' => $scandepartments, 'scanpoints' => $scanpoints]);
+    {
+        return view('user.index', ['users' => User::All()]);
     }
 
     /**
@@ -27,7 +29,7 @@ class ScanpointController extends Controller
      */
     public function create()
     {
-        return view('scanpoints.create');
+        return view('user.create');
     }
 
     /**
@@ -38,16 +40,36 @@ class ScanpointController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(!isset($request['is_admin'])){
+            $is_admin = "0";
+        }elseif($request['is_admin'] === "on") {
+            $is_admin = "1";
+        }
+
+        /*return User::create([
+            'name' => $request['name'],
+            'username' => $request['username'],
+            'password' => Hash::make($request['password']),
+            'is_admin' => $is_admin,
+        ]);*/
+
+        $user = new User();
+        $user->name = request('name');
+        $user->username = request('username');
+        $user->password = Hash::make(request('password'));
+        $user->is_admin = $is_admin;
+        $user->save();
+
+        return view('user.create');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Scanpoint  $scanpoint
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Scanpoint $scanpoint)
+    public function show($id)
     {
         //
     }
@@ -55,10 +77,10 @@ class ScanpointController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Scanpoint  $scanpoint
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Scanpoint $scanpoint)
+    public function edit($id)
     {
         //
     }
@@ -67,10 +89,10 @@ class ScanpointController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Scanpoint  $scanpoint
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Scanpoint $scanpoint)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -78,12 +100,11 @@ class ScanpointController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Scanpoint  $scanpoint
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        Scanpoint::destroy($id);
-        return redirect('/scanpoint');
+        //
     }
 }
