@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::resource('users', 'UserController')->middleware('admin');
+Route::resource('users', 'UserController');
 
 Auth::routes();
 
