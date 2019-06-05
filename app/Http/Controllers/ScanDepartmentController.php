@@ -78,7 +78,7 @@ class ScanDepartmentController extends Controller
             $scanDepartment->scanDepartment_name = $request->input('scanDepartment_name');
             $scanDepartment->save();
         }
-        return redirect('/scandepartment')->with('success','Student has been edited!');
+        return redirect('/scandepartment');
     }
     /**
      * Remove the specified resource from storage.
@@ -88,9 +88,9 @@ class ScanDepartmentController extends Controller
      */
     public function destroy($id)
     {
-        //$scandepartment->ScanDepartment();
+       
         ScanDepartment::destroy($id);
         
-        return redirect('/scandepartment')->with('success','ScanDepartment has been deleted!');
+        return redirect('/scandepartment');
     }   
 }

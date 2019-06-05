@@ -4,7 +4,7 @@
 
 	<h1>Scandepartments</h1>
 
-	 <table class="table table-bordered mb-0">
+	<table class="table table-bordered mb-0">
         <thead>
            	<tr>
                 <th scope="col">ScanDepartments</th>
@@ -12,27 +12,24 @@
                 
             </tr>
         </thead>
-            <tbody>
-            <tr>
-            	@foreach($ScanDepartments as $ScanDepartment)
-            	
+        <tbody>
+            @foreach($ScanDepartments as $ScanDepartment)
+            		<tr>
                         <td>{{ $ScanDepartment->name }}</td>
                         <td>
-                        	<a href="/scandepartment/{{$ScanDepartment->id}}/edit">Edit</a> 
-                        	<button type="button" class="btn btn-secondary" href="/scandepartment/{{$ScanDepartment->id}}/edit">Edit</button> 
-                        	<form action="{{action('ScanDepartmentController@destroy', ['id' => $ScanDepartment->id])}}" method="post">
+                        	<a href="/scandepartment/{{$ScanDepartment->id}}/edit" class="btn btn-secondary">Edit</a> 
+                        	<form style="display:inline-block" action="{{action('ScanDepartmentController@destroy', ['id' => $ScanDepartment->id])}}" method="post">
 								@csrf
 								@method('DELETE')
-								<button class="btn btn-danger" type="submit">Delete</button>
+								<button onclick="return confirm('Are you sure you want to Delete a ScanDepartment?')" class="btn btn-danger" type="submit">Delete</button>
 							</form>
-			</td>
-
-            </tr>
-                @endforeach
+						</td>		
+            		</tr>
+            @endforeach
 		</tr>
 	</table>
 
-    <a class="btn btn-success"  href="{{ route('scandepartment.create') }}">Create</a>
+    <a class="btn btn-success" href="{{ route('scandepartment.create') }}">Create</a>
 
 
 @endsection
