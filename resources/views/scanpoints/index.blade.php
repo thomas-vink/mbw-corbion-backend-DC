@@ -27,7 +27,13 @@
                     @method('DELETE')
                     <button type="submit" value="Submit" class="btn btn-danger">Delete</button>
                   </form> 
-                </td>
+              </td>
+              <td>   
+                  <form action="{{action('ScanpointController@edit', ['id' => $scanpoint->id])}}" method="get">
+                      @csrf
+                      <button type="submit" value="Submit" class="btn btn-secondary">Edit</button>
+                    </form> 
+              </td>
           </tr>
         @endforeach 
       @else 
