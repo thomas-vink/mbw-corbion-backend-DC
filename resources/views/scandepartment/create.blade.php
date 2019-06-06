@@ -12,7 +12,7 @@
         </div>
 
         <div>
-            <button type="button" class="btn btn-success">Save</button>
+            <button type="submit" value="submit" class="btn btn-success">Save</button>
         </div>
     </form>
 @endsection

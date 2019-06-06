@@ -42,9 +42,9 @@ class ScanDepartmentController extends Controller
      * @param  \App\ScanDepartment  $scanDepartment
      * @return \Illuminate\Http\Response
      */
-    public function show(ScanDepartment $scanDepartment)
+    public function show(ScanDepartment $scanDepartment, $id)
     {
-        //
+        return view('scandepartment.show', ['ScanDepartments' => $scanDepartment]);
     }
     /**
      * Show the form for editing the specified resource.

@@ -17,6 +17,7 @@
             		<tr>
                         <td>{{ $ScanDepartment->name }}</td>
                         <td>
+                        	<a href="/scandepartment/{{$ScanDepartment->id}}/" class="btn btn-secondary">View</a> 
                         	<a href="/scandepartment/{{$ScanDepartment->id}}/edit" class="btn btn-secondary">Edit</a> 
                         	<form style="display:inline-block" action="{{action('ScanDepartmentController@destroy', ['id' => $ScanDepartment->id])}}" method="post">
 								@csrf
