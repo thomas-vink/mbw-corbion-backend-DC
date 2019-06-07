@@ -11,14 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
-
 Route::resource('users', 'UserController');
-
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('/scandepartment', 'ScanDepartmentController');
+Route::resource('scanpoint', 'ScanpointController');
+
+
+
+
