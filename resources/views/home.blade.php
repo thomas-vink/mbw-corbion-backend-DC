@@ -1,28 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-    @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-info" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+<div class="row department-cards">
+  @foreach($ScanDepartments as $ScanDepartment)
+    <div class="card col-sm-6 py-2 h-100">
+        <div class="card-body">
+            <h5 class="card-title">{{ $ScanDepartment->name }}</h5>
+                <div class="table-wrapper-scroll-y my-custom-scrollbar">
 
-                    You are logged in!
-                </div>
-            </div>
+                  <table class="table table-bordered mb-0">
+                    <thead>
+                      <tr>
+                        <th scope="col">ScanPoint</th>
+                        <th scope="col">Where</th>
+                        <th scope="col">Who</th>
+                        <th scope="col">Scans To Do</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>                      
         </div>
     </div>
+  @endforeach
+
+
 </div>
 @endsection
+
