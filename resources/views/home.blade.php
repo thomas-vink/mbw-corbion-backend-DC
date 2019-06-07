@@ -20,10 +20,14 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        @foreach ($Scanpoints as $Scanpoint)
+                          @if($Scanpoint->department_id === $ScanDepartment->id)
+                            <th scope="row">{{$Scanpoint->barcode}}</th>
+                            <td>{{$Scanpoint->location}}</td>
+                            <td></td>
+                            <td></td>
+                          @endif
+                        @endforeach
                       </tr>
                     </tbody>
                   </table>

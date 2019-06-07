@@ -59,7 +59,7 @@
                               <div class="collapse navbar-collapse" id="navbarText">
                                 <ul class="navbar-nav mr-auto">
                                   <li class="nav-item">
-                                    <a class="nav-link" href="#">Scans</a>
+                                    <a class="nav-link" href="/scanpoint">Scans</a>
                                   </li>
                                   <li class="nav-item">
                                     <a class="nav-link" href="#">Overruled</a>
