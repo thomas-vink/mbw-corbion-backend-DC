@@ -19,16 +19,16 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        @foreach ($Scanpoints as $Scanpoint)
+                      @foreach ($Scanpoints as $Scanpoint)
+                        <tr>
                           @if($Scanpoint->department_id === $ScanDepartment->id)
-                            <th scope="row">{{$Scanpoint->barcode}}</th>
+                            <th>{{$Scanpoint->barcode}}</th>
                             <td>{{$Scanpoint->location}}</td>
                             <td></td>
                             <td></td>
                           @endif
-                        @endforeach
-                      </tr>
+                        </tr>
+                      @endforeach
                     </tbody>
                   </table>
                 </div>                      

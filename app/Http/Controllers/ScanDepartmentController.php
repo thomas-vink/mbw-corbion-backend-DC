@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use App\ScanDepartment;
+use App\Scanpoint;
 use Illuminate\Http\Request;
 
 class ScanDepartmentController extends Controller
@@ -42,9 +43,10 @@ class ScanDepartmentController extends Controller
      * @param  \App\ScanDepartment  $scanDepartment
      * @return \Illuminate\Http\Response
      */
-    public function show(ScanDepartment $scanDepartment, $id)
-    {
-        return view('scandepartment.show', ['ScanDepartments' => $scanDepartment]);
+    public function show($id)
+    {   
+        $Scanpoints = Scanpoint::where('department_id', $id)->get();
+        return view('scandepartment.show', ['ScanDepartment' => ScanDepartment::find($id), 'Scanpoints' => $Scanpoints]);
     }
     /**
      * Show the form for editing the specified resource.
