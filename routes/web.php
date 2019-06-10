@@ -22,4 +22,4 @@ Route::resource('scanpoint', 'ScanpointController');
 
 
 
-
+//test
