@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Scanpoint;
 use App\ScanDepartment;
 use Illuminate\Http\Request;
+use Validator;
 
 class ScanpointController extends Controller
 {
@@ -27,7 +28,9 @@ class ScanpointController extends Controller
      */
     public function create()
     {
-        return view('scanpoints.create');
+        $ScanDepartments = ScanDepartment::all();
+        return view('scanpoints.create')->with(['ScanDepartments'=> $ScanDepartments]);
+       
     }
 
     /**
@@ -38,7 +41,12 @@ class ScanpointController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $name = new Scanpoint;
+        $name->barcode = request('barcode');
+        $name->location = request('location');
+        $name->department_id = request('scandepartment');
+        $name->save();
+        return redirect('/scanpoint');
     }
 
     /**
@@ -60,7 +68,8 @@ class ScanpointController extends Controller
      */
     public function edit(Scanpoint $scanpoint)
     {
-        //
+        $ScanDepartments = ScanDepartment::all();
+        return view('scanpoints.edit')->with(['ScanPoint'=> $scanpoint, 'ScanDepartments' => $ScanDepartments]);
     }
 
     /**
@@ -70,9 +79,17 @@ class ScanpointController extends Controller
      * @param  \App\Scanpoint  $scanpoint
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Scanpoint $scanpoint)
+    public function update(Request $request, $id)
     {
-        //
+        
+			$Scanpoint = Scanpoint::find($id);
+			$Scanpoint->barcode       = request('barcode');
+			$Scanpoint->location      = request('location');
+			$Scanpoint->department_id = request('scandepartment');
+			$Scanpoint->save();
+			// redirect
+			return redirect('/scanpoint');
+		
     }
 
     /**
