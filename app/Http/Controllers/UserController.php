@@ -12,6 +12,10 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin')->except('index');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -46,13 +50,6 @@ class UserController extends Controller
             $is_admin = "1";
         }
 
-        /*return User::create([
-            'name' => $request['name'],
-            'username' => $request['username'],
-            'password' => Hash::make($request['password']),
-            'is_admin' => $is_admin,
-        ]);*/
-
         $user = new User();
         $user->name = request('name');
         $user->username = request('username');
@@ -60,7 +57,7 @@ class UserController extends Controller
         $user->is_admin = $is_admin;
         $user->save();
 
-        return view('user.create');
+        return redirect('/users');
     }
 
     /**
