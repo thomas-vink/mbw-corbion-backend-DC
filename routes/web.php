@@ -17,7 +17,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/scandepartment', 'ScanDepartmentController');
 Route::resource('scanpoint', 'ScanpointController');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-
-
-
+Route::get('/', function () {
+    return redirect('/home');
+});
