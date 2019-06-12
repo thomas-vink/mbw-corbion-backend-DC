@@ -15,11 +15,10 @@ Auth::routes();
 Route::resource('users', 'UserController');
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-
+Route::resource('/scandepartment', 'ScanDepartmentController');
 Route::resource('scanpoint', 'ScanpointController');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-
-
-
-//test
+Route::get('/', function () {
+    return redirect('/home');
+});

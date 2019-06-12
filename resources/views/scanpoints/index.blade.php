@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<h1>ScanPoints</h1>
 <table class="table">
     <thead>
       <tr>
