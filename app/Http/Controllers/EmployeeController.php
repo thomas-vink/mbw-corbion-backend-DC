@@ -78,7 +78,11 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        //
+        $employee->name = request('name');
+        $employee->employeecode = request('employeecode');
+        $employee->save();
+
+        return redirect('/employees');
     }
 
     /**
@@ -87,8 +91,9 @@ class EmployeeController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy($id)
     {
-        //
+        Employee::destroy($id);
+        return redirect('/employees');
     }
 }
