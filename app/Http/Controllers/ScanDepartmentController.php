@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class ScanDepartmentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin')->except('index', 'show');
+    }
     /**
      * Display a listing of the resource.
      *
