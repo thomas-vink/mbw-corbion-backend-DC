@@ -5,9 +5,13 @@
 
  }
 
+table.table-bordered tr{
+   height: 20px;
+}
+
  .my-custom-scrollbar {
 position: relative;
-height: 300px;
+height: 330px;
 overflow: scroll;
 }
 .table-wrapper-scroll-y {

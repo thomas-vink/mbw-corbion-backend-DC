@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-   <h1>Create a new Scandepartment</h1>
+   <h1>Edit a ScanPoint</h1>
     <form action="{{route('scanpoint.update', ['id' => $ScanPoint->id])}}" method="POST">
         {{ csrf_field() }}
         @method('PATCH')
