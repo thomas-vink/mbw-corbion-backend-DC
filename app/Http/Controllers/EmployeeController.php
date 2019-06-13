@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Employee;
 use Illuminate\Http\Request;
 
-use App\User;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
-
-class UserController extends Controller
+class EmployeeController extends Controller
 {
     public function __construct()
     {
         $this->middleware('admin')->except('index', 'show');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.index', ['users' => User::All()]);
+        return view('employee.index', ['Employees' => Employee::all()]);
     }
 
     /**
@@ -33,7 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        return view('employee.create');
     }
 
     /**
@@ -44,29 +40,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        if(!isset($request['is_admin'])){
-            $is_admin = "0";
-        }elseif($request['is_admin'] === "on") {
-            $is_admin = "1";
-        }
-
-        $user = new User();
-        $user->name = request('name');
-        $user->username = request('username');
-        $user->password = Hash::make(request('password'));
-        $user->is_admin = $is_admin;
-        $user->save();
-
-        return redirect('/users');
+        $employee = new Employee;
+        $employee->name = request('name');
+        $employee->employeecode = request('employeecode');
+        $employee->save();
+        return redirect('/employees');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Employee $employee)
     {
         //
     }
@@ -74,22 +61,22 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Employee $employee)
     {
-        //
+        return view('employee.edit', ['employee' => $employee]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Employee $employee)
     {
         //
     }
@@ -97,10 +84,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Employee $employee)
     {
         //
     }
