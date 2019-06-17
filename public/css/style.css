@@ -13,3 +13,6 @@ overflow: scroll;
 .table-wrapper-scroll-y {
 display: block;
 }
+.inline-block{
+    display: inline-block;
+}
