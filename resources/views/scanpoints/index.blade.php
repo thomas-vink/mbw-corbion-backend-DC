@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
 <h1>ScanPoints</h1>
 <table class="table">
     <thead>

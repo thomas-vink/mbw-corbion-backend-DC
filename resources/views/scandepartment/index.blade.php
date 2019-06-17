@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-
+	@if (session('error'))
+		<div class="alert alert-danger">
+			{{ session('error') }}
+		</div>
+	@endif
 	<h1>Scandepartments</h1>
 
 	<table class="table table-bordered mb-0">
