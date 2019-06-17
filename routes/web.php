@@ -12,14 +12,17 @@
 */
 
 Auth::routes();
-Route::resource('user', 'UserController');
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('scandepartment', 'ScanDepartmentController');
-Route::resource('scanpoint', 'ScanpointController');
-Route::resource('employees', 'EmployeeController');
-Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('scandepartment', 'ScanDepartmentController');
+    Route::resource('scanpoint', 'ScanpointController');
+    Route::resource('employees', 'EmployeeController');
+    Route::resource('user', 'UserController');
+});
 
 Route::get('/', function () {
     return redirect('/home');
 });
+
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');

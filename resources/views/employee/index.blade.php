@@ -7,9 +7,10 @@
         </div>
     @endif
 
+
     <h1>Werknemers</h1>
     <a href="{{action('EmployeeController@create')}}"class="btn btn-success">Nieuwe medewerker aanmaken</a>
-    <table class="table">
+    <table class="table table-bordered">
         <thead>
         <tr>
             <th scope="col">Naam</th>
@@ -24,14 +25,14 @@
                     <td>{{$Employee->name}}</td>
                     <td>{{$Employee->employeecode}}</td>
                     <td>
-                        <form action="{{action('EmployeeController@destroy', ['id' => $Employee->id])}}" method="post">
+                        <form style="display:inline-block" action="{{action('EmployeeController@edit', ['id' => $Employee->id])}}" method="get">
+                            @csrf
+                            <button type="submit" value="Submit" class="btn btn-secondary">Edit</button>
+                        </form>
+                        <form style="display:inline-block" action="{{action('EmployeeController@destroy', ['id' => $Employee->id])}}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit" value="Submit" class="btn btn-danger">Delete</button>
-                        </form>
-                        <form action="{{action('EmployeeController@edit', ['id' => $Employee->id])}}" method="get">
-                            @csrf
-                            <button type="submit" value="Submit" class="btn btn-secondary">Edit</button>
                         </form>
                     </td>
                 </tr>
