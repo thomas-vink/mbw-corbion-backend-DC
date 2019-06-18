@@ -57,7 +57,7 @@ class ScanDepartmentController extends Controller
     public function edit(ScanDepartment $scanDepartment, $id)
     {   
         $scanDepartment = ScanDepartment::find($id);
-        return view('scandepartment.edit', ['ScanDepartment' => $scanDepartment]);   
+        return view('scandepartment.edit', ['ScanDepartment' => $scanDepartment]);
     }
     /**
      * Update the specified resource in storage.
@@ -83,8 +83,15 @@ class ScanDepartmentController extends Controller
     public function destroy(ScanDepartment $scanDepartment, $id)
     {
        
-        ScanDepartment::destroy($id);
+      //  ScanDepartment::destroy($id);
         
-        return redirect('/scandepartment');
+       // return redirect('/scandepartment');
+
+        try {
+            ScanDepartment::destroy($id);
+            return redirect('scandepartment')->with('success', 'ScanDepartment has been deleted!');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect('scandepartment')->with('error', 'Failed to delete ScanDepartment, it still has ScanPoints attached.');
+        }
     }   
 }

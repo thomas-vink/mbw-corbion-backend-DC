@@ -17,3 +17,22 @@ overflow: scroll;
 .table-wrapper-scroll-y {
 display: block;
 }
+
+.scandepartment-list{
+	width: 75%;
+	float: left;  
+}
+
+.scanpoint-list{
+	width: 75%;
+	float: left; 
+}
+
+.create-card{
+	width: 25%;
+	float: left;
+}
+
+h1{
+	text-align: center;
+}
