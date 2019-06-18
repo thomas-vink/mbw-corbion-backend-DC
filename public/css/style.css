@@ -36,3 +36,8 @@ display: block;
 h1{
 	text-align: center;
 }
+
+.inline-block{
+    display: inline-block;
+
+}

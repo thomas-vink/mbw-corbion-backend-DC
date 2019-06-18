@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 @if (session('error'))
   <div class="alert alert-danger">
     {{ session('error') }}
@@ -13,6 +14,13 @@
     {{ session('success') }}
   </div>
 @endif
+
+
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
 
 <h1>ScanPoints</h1>
 <div class="scanpoint-list">
