@@ -26,4 +26,24 @@ class HomeController extends Controller
     {
         return view('home', ['ScanDepartments' => ScanDepartment::all(), 'Scanpoints' => Scanpoint::all()]);
     }
+
+    function csvToArray($filename = '')
+    {
+        $filepath = public_path('test.csv');
+        $fileContent = file_get_contents($filepath);
+        $fileContent = mb_convert_encoding($fileContent, "UTF-8");
+        $lines = explode("\n", $fileContent);
+
+        array_pop($lines);
+        return $lines;
+    }
+
+    public function importCsv()
+    {
+        $file = public_path('test.csv');
+
+        $lines = $this->csvToArray($file);
+
+        return view('scannedpoints.index', ['lines' => $lines]);
+    }
 }
