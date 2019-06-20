@@ -1,6 +1,6 @@
-@foreach ($scandepartments as $scanDepartment)
+@foreach ($scandepartments as $scandepartment)
 @foreach ($scanpoints as $scanpoint)
- @if ($scanDepartment->id === $scanpoint->department_id)
+ @if ($scandepartment->id === $scanpoint->department_id)
      {{$scanpoint->id}}
  @endif
 @endforeach
