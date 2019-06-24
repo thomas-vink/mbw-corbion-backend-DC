@@ -13,12 +13,10 @@ class CheckRole
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $role)
     {
 
-        $user = $request->user();
-
-        if($user->is_admin === 0) {
+        if($request->user()->role->name === $role) {
             return redirect()->back()->with('error', 'Login met een shiftmanager account om dit aan te kunnen passen.');
         }
 
