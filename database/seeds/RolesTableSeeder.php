@@ -13,15 +13,15 @@ class RolesTableSeeder extends Seeder
     {
         DB::table('roles')->insert([
             'id'        => '1',
-            'name' => 'shiftmanager',
+            'name' => 'Shiftmanager',
         ]);
         DB::table('roles')->insert([
             'id'        => '2',
-            'name' => 'spillteam',
+            'name' => 'Spillteam',
         ]);
         DB::table('roles')->insert([
             'id'        => '3',
-            'name' => 'operator',
+            'name' => 'Operator',
         ]);
     }
 }
