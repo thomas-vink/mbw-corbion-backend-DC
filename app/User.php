@@ -5,9 +5,15 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
+    public function role()
+    {
+        return $this->belongsTo('App\Role');
+    }
+
     use Notifiable;
 
     /**
@@ -16,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'password', 'is_admin',
+        'name', 'username', 'password', 'role_id',
     ];
 
     /**
