@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Rapporteer hier een bug zodat deze opgelost kan worden
-title: "[BUG]"
+title: '[BUG] "Voer hier een duidelijke titel in"'
 labels: bug
 assignees: DennisNijland, DylanvanMasbergen, thomas-vink
 
