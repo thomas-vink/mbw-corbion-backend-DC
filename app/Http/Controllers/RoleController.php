@@ -2,21 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use Illuminate\Http\Request;
 
-use App\User;
-use App\Role;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
-
-class UserController extends Controller
+class RoleController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('admin:Shiftmanager')->except('index', 'show');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.index', ['users' => User::All()]);
+        //
     }
 
     /**
@@ -34,8 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::all();
-        return view('user.create')->with(['roles' => $roles]);
+        //
     }
 
     /**
@@ -46,23 +35,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User();
-        $user->name = request('name');
-        $user->username = request('username');
-        $user->password = Hash::make(request('password'));
-        $user->role_id = request('role_id');
-        $user->save();
-
-        return redirect('/user');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Role $role)
     {
         //
     }
@@ -70,10 +52,10 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
         //
     }
@@ -82,10 +64,10 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $role)
     {
         //
     }
@@ -93,10 +75,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
         //
     }

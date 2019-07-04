@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class ScanDepartmentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin:Spillteam')->except('index', 'show');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -54,9 +58,10 @@ class ScanDepartmentController extends Controller
      * @param  \App\ScanDepartment  $scanDepartment
      * @return \Illuminate\Http\Response
      */
-    public function edit(ScanDepartment $scanDepartment, $id, Request $request)
-    {
-        return view('scandepartment.edit', ['ScanDepartments' => $scanDepartment]);   
+    public function edit(ScanDepartment $scanDepartment, $id)
+    {   
+        $scanDepartment = ScanDepartment::find($id);
+        return view('scandepartment.edit', ['ScanDepartment' => $scanDepartment]);
     }
     /**
      * Update the specified resource in storage.
@@ -65,21 +70,12 @@ class ScanDepartmentController extends Controller
      * @param  \App\ScanDepartment  $scanDepartment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ScanDepartment $scanDepartment, $id)
+    public function update(ScanDepartment $scanDepartment, $id)
     {
-        $rules = array(
-            'scanDepartment_name' => 'required',
-        );
-        $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) {
-            return redirect()
-                        ->action('ScanDepartmentController@edit', ['id' => $scanDepartment->id])
-                        ->withErrors($validator)
-                        ->withInput();
-        } else {
-            $scanDepartment->scanDepartment_name = $request->input('scanDepartment_name');
-            $scanDepartment->save();
-        }
+            $scanDepartment = ScanDepartment::find($id);
+                $scanDepartment->name = request('name');
+                $scanDepartment->save();
+
         return redirect('/scandepartment');
     }
     /**
@@ -88,11 +84,18 @@ class ScanDepartmentController extends Controller
      * @param  \App\ScanDepartment  $scanDepartment
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ScanDepartment $scanDepartment, $id)
     {
        
-        ScanDepartment::destroy($id);
+      //  ScanDepartment::destroy($id);
         
-        return redirect('/scandepartment');
+       // return redirect('/scandepartment');
+
+        try {
+            ScanDepartment::destroy($id);
+            return redirect('scandepartment')->with('success', 'ScanDepartment has been deleted!');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect('scandepartment')->with('error', 'Failed to delete ScanDepartment, it still has ScanPoints attached.');
+        }
     }   
 }
