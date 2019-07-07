@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use App\Classes\RoundChecker;
+use App\Classes\ShiftChecker;
+use App\ScannedPoint;
 
-class EmployeeController extends Controller
+
+
+
+class ScanRoundController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('admin')->except('index', 'show');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -19,19 +20,22 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        return view('employee.index', ['Employees' => Employee::all()]);
+        dd(Scannedpoint::all());
+      //  $foobar = new shiftChecker;  // correct
+      //  $foobar->getShift();
     }
 
-    /**
+    /**     
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('employee.create');
+    public function create(Request $request)
+    {   
+        $roundChecker = new RoundChecker;
+        $roundChecker->putDatabase($roundChecker->splicer($request->all()));
+        $roundChecker->makeRound();
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -40,20 +44,16 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        $employee = new Employee;
-        $employee->name = request('name');
-        $employee->employeecode = request('employeecode');
-        $employee->save();
-        return redirect('/employees');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Employee  $employee
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Employee $employee)
+    public function show($id)
     {
         //
     }
@@ -61,39 +61,34 @@ class EmployeeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Employee  $employee
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit($id)
     {
-        return view('employee.edit', ['employee' => $employee]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Employee  $employee
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(Request $request, $id)
     {
-        $employee->name = request('name');
-        $employee->employeecode = request('employeecode');
-        $employee->save();
-
-        return redirect('/employees');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Employee  $employee
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        Employee::destroy($id);
-        return redirect('/employees');
+        //
     }
 }

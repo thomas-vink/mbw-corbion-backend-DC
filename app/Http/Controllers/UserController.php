@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\User;
-use App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -15,7 +14,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin:Shiftmanager')->except('index', 'show');
+        $this->middleware('admin')->except('index', 'show');
     }
     /**
      * Display a listing of the resource.
@@ -34,8 +33,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::all();
-        return view('user.create')->with(['roles' => $roles]);
+        return view('user.create');
     }
 
     /**
@@ -46,11 +44,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        if(!isset($request['is_admin'])){
+            $is_admin = "0";
+        }elseif($request['is_admin'] === "on") {
+            $is_admin = "1";
+        }
+
         $user = new User();
         $user->name = request('name');
         $user->username = request('username');
         $user->password = Hash::make(request('password'));
-        $user->role_id = request('role_id');
+        $user->is_admin = $is_admin;
         $user->save();
 
         return redirect('/user');
