@@ -28,6 +28,11 @@ display: block;
 	float: left; 
 }
 
+.employee-list{
+	width: 75%;
+	float: left;
+}
+
 .create-card{
 	width: 25%;
 	float: left;
