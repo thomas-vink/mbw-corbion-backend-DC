@@ -9,7 +9,7 @@ class EmployeeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin')->except('index', 'show');
+        $this->middleware('admin:Spillteam')->except('index', 'show');
     }
 
     /**
