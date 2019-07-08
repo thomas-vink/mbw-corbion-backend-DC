@@ -3,20 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use App\Classes\RoundChecker;
+use App\Classes\ShiftChecker;
+use App\ScannedPoint;
 
-use App\User;
-use App\Role;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
 
-class UserController extends Controller
+
+
+class ScanRoundController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('admin:Shiftmanager')->except('index', 'show');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -24,37 +20,32 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.index', ['users' => User::All()]);
+        dd(Scannedpoint::all());
+      //  $foobar = new shiftChecker;  // correct
+      //  $foobar->getShift();
     }
 
-    /**
+    /**     
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $roles = Role::all();
-        return view('user.create')->with(['roles' => $roles]);
-    }
+    public function create(Request $request)
+    {   
 
+        $data = RoundChecker::splicer($request);
+        log::info($data);
+        $roundChecker = new RoundChecker;
+        $roundChecker->putDatabase($data);
+    }
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-
-        $user = new User();
-        $user->name = request('name');
-        $user->username = request('username');
-        $user->password = Hash::make(request('password'));
-        $user->role_id = request('role_id');
-        $user->save();
-
-        return redirect('/user');
+        //
     }
 
     /**

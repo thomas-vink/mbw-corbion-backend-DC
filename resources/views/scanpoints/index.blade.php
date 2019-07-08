@@ -15,13 +15,20 @@
   </div>
 @endif
 
+
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
 <h1>ScanPoints</h1>
 <div class="scanpoint-list">
   <table class="table table-bordered mb-0">
       <thead>
         <tr>
           <th scope="col">Barcode</th>
-          <th scope="col">Location</th>
+          <th scope="col">Locatie</th>
           <th scope="col">Department</th>
           <th scope="col">Option</th>
         </tr>
