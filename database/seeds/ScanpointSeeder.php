@@ -23,5 +23,11 @@ class ScanpointSeeder extends Seeder
             'location'   => 'testlocatie2',
             'department_id' => '2'
         ]);
+        DB::table('scanpoints')->insert([
+            'id'        => '3',
+            'barcode'   => 'p0333',
+            'location'   => 'testlocatie3',
+            'department_id' => '2'
+        ]);
     }
 }
