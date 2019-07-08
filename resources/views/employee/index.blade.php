@@ -9,8 +9,8 @@
 
 
     <h1>Werknemers</h1>
-    <div class="employee-list">
-    <table class="table table-bordered mb-0">
+    <a href="{{action('EmployeeController@create')}}"class="btn btn-success">Nieuwe medewerker aanmaken</a>
+    <table class="table table-bordered">
         <thead>
         <tr>
             <th scope="col">Naam</th>
@@ -42,14 +42,5 @@
         @endif
         </tbody>
     </table>
-    </div>
-    <div class="create-card">
-        <div class="card-header">
-            Create a new Employee
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Press the Create button to Create a new Employee</h5>
-            <a class="btn btn-success" href="{{ route('employees.create') }}">Create</a>
-        </div>
-    </div>
+    <a href="{{action('EmployeeController@create')}}"class="btn btn-success">Nieuwe medewerker aanmaken</a>
 @endsection

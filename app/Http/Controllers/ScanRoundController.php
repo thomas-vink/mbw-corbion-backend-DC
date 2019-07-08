@@ -3,19 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use App\Classes\RoundChecker;
+use App\Classes\ShiftChecker;
+use App\ScannedPoint;
 
-use App\User;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
 
-class UserController extends Controller
+
+
+class ScanRoundController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('admin')->except('index', 'show');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -23,41 +20,32 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.index', ['users' => User::All()]);
+        dd(Scannedpoint::all());
+      //  $foobar = new shiftChecker;  // correct
+      //  $foobar->getShift();
     }
 
-    /**
+    /**     
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('user.create');
-    }
+    public function create(Request $request)
+    {   
 
+        $data = RoundChecker::splicer($request);
+        log::info($data);
+        $roundChecker = new RoundChecker;
+        $roundChecker->putDatabase($data);
+    }
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        if(!isset($request['is_admin'])){
-            $is_admin = "0";
-        }elseif($request['is_admin'] === "on") {
-            $is_admin = "1";
-        }
-
-        $user = new User();
-        $user->name = request('name');
-        $user->username = request('username');
-        $user->password = Hash::make(request('password'));
-        $user->is_admin = $is_admin;
-        $user->save();
-
-        return redirect('/user');
+        //
     }
 
     /**

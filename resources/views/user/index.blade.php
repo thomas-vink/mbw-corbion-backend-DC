@@ -6,7 +6,7 @@
             {{ session('error') }}
         </div>
     @endif
-    <h1>Gebruikers</h1>
+    <h1>Users index</h1>
     <a href="/user/create">Nieuwe gebruiker aanmaken</a>
     @foreach($users as $user)
         <ul>
