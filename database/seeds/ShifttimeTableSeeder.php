@@ -11,17 +11,17 @@ class ShifttimeTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('shifttimes')->insert([
+        DB::table('shift_times')->insert([
             'id'        => '1',
             'timeStart' => '22:00',
             'timeEnd'    => '06:00',
         ]);
-        DB::table('shifttimes')->insert([
+        DB::table('shift_times')->insert([
             'id'        => '2',
             'timeStart' => '06:00',
             'timeEnd'    => '14:00',
         ]); 
-        DB::table('shifttimes')->insert([
+        DB::table('shift_times')->insert([
             'id'        => '3',
             'timeStart' => '14:00',
             'timeEnd'    => '22:00',
