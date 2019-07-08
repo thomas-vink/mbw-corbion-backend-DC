@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\ScanDepartment;
 use App\Scanpoint;
+use App\scanRound;
+use App\ScannedPoint;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,26 +26,17 @@ class HomeController extends Controller
      */
     public function index()
     {
+        
         return view('home', ['ScanDepartments' => ScanDepartment::all(), 'Scanpoints' => Scanpoint::all()]);
     }
 
-    function csvToArray($filename = '')
+   
+
+    public function showFile()
     {
-        $filepath = public_path('Barcodes.csv');
-        $fileContent = file_get_contents($filepath);
-        $fileContent = mb_convert_encoding($fileContent, "UTF-8");
-        $lines = explode("\n", $fileContent);
-
-        array_pop($lines);
-        return $lines;
-    }
-
-    public function importCsv()
-    {
-        $file = public_path('test.csv');
-
-        $lines = $this->csvToArray($file);
-
-        return view('scannedpoints.index', ['lines' => $lines]);
+        $scannedPoints = Scannedpoint::all();
+        $scanRound = ScanRound::all();
+        $scanPoint = Scanpoint::all();
+        return view('scannedpoints.index', ['scannedPoints' => $scannedPoints,'scanRound' => $scanRound, 'scanPoint' => $scanPoint]);
     }
 }

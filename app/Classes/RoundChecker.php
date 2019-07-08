@@ -18,24 +18,22 @@ class RoundChecker
     {
         $count = 0;
         $scannedPoints;
-        foreach($request as $key => $value)
+
+        foreach($request->input() as $row)
         {
-            $exploded = explode(',', $value);
-            $scannedPoints[$count] = array(
-                'barcode'  => $exploded[0],
-                'time'  =>  substr($exploded[1],1,-1),
-                'date' => substr( $exploded[2],1,-1),
+            $exploded = explode(',', $row);
+            $scannedPoints[$count] = array( 
+                'barcode'  => substr($exploded[0],1),
+                'time'  =>  substr($exploded[1],2,-3),
+                'date' => substr( $exploded[2],2,-3),
              );
             $count++;
         }
-        return $scannedPoints;
+        return $scannedPoints;  
     }
 
     public function putDatabase($scanPoints)
     {
-        $scanRound = new ScanRound;
-        $scanRound->shift_id = $id;
-
         foreach($scanPoints as $scanPoint)
         {
             $scanpointId = $this->getPointID($scanPoint['barcode']);

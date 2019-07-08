@@ -13,14 +13,14 @@ class CreateScannedpointsTable extends Migration
      */
     public function up()
     {
-        Schema::create('scannedpoints', function (Blueprint $table) {
+        Schema::create('scanned_points', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->dateTime('scanned_at');
+            $table->time('scanned_time');
 
             $table->unsignedBigInteger('operator_id');
             $table->foreign('operator_id')->references('id')->on('employees');
             $table->unsignedBigInteger('scanround_id');
-            $table->foreign('scanround_id')->references('id')->on('scanrounds');
+            $table->foreign('scanround_id')->references('id')->on('scan_rounds');
             $table->unsignedBigInteger('Scanpoint_id');
             $table->foreign('scanpoint_id')->references('id')->on('scanpoints');
         });
@@ -33,6 +33,6 @@ class CreateScannedpointsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('scannedpoints');
+        Schema::dropIfExists('scanned_points');
     }
 }

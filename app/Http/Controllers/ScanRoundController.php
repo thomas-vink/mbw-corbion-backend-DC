@@ -32,15 +32,16 @@ class ScanRoundController extends Controller
      */
     public function create(Request $request)
     {   
+
+        $data = RoundChecker::splicer($request);
+        log::info($data);
         $roundChecker = new RoundChecker;
-        $roundChecker->putDatabase($roundChecker->splicer($request->all()));
-        $roundChecker->makeRound();
+        $roundChecker->putDatabase($data);
     }
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {

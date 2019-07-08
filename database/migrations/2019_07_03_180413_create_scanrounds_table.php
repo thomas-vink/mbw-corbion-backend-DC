@@ -13,10 +13,11 @@ class CreateScanroundsTable extends Migration
      */
     public function up()
     {
-        Schema::create('scanrounds', function (Blueprint $table) {
+        Schema::create('scan_rounds', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('shift_id');
-            $table->foreign('shift_id')->references('id')->on('shifttimes');
+            $table->date('scanned_date');
+            $table->foreign('shift_id')->references('id')->on('shift_times');
      
         });
     }
@@ -28,6 +29,6 @@ class CreateScanroundsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('scanrounds');
+        Schema::dropIfExists('scan_rounds');
     }
 }

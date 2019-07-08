@@ -13,7 +13,7 @@ class CreateShifttimesTable extends Migration
      */
     public function up()
     {
-        Schema::create('shifttimes', function (Blueprint $table) {
+        Schema::create('shift_times', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->time('timeStart');
             $table->time('timeEnd');
@@ -27,6 +27,6 @@ class CreateShifttimesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shifttimes');
+        Schema::dropIfExists('shift_times');
     }
 }

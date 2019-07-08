@@ -15,7 +15,7 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/scanfile', 'HomeController@importCsv')->name('scanfile');
+    Route::get('/scanfile', 'HomeController@showFile')->name('scanfile');
     Route::resource('scandepartment', 'ScanDepartmentController');
     Route::resource('scanpoint', 'ScanpointController');
     Route::resource('employees', 'EmployeeController');
