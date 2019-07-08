@@ -7,7 +7,7 @@
         </div>
     @endif
     <h1>Users index</h1>
-    <a href="/users/create">Nieuwe gebruiker aanmaken</a>
+    <a href="/user/create">Nieuwe gebruiker aanmaken</a>
     @foreach($users as $user)
         <ul>
 

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 
-	<h1>Department</h1>
+	<h1>{{ $ScanDepartment->name }}</h1>
 	
 	<h4>Amount of ScanPoints this ScanDepartments has</h4>
 
@@ -15,10 +15,10 @@
 			</tr>
 		</thead>
 		<tbody>
-		@foreach($ScanDepartments as $ScanDepartment)
+		@foreach($Scanpoints as $Scanpoint)
 		<tr>
-			<td></td>
-			<td></td>
+			<td>{{$Scanpoint->barcode}}</td>
+			<td>{{$Scanpoint->location}}</td>
 		</tr>
 		@endforeach
 		</tbody>

@@ -2,20 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Import;
 use Illuminate\Http\Request;
 
-use App\User;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
-
-class UserController extends Controller
+class ImportController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('admin')->except('index', 'show');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.index', ['users' => User::All()]);
+        //
     }
 
     /**
@@ -33,7 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        //
     }
 
     /**
@@ -44,29 +35,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        if(!isset($request['is_admin'])){
-            $is_admin = "0";
-        }elseif($request['is_admin'] === "on") {
-            $is_admin = "1";
-        }
-
-        $user = new User();
-        $user->name = request('name');
-        $user->username = request('username');
-        $user->password = Hash::make(request('password'));
-        $user->is_admin = $is_admin;
-        $user->save();
-
-        return redirect('/user');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Import  $import
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Import $import)
     {
         //
     }
@@ -74,10 +52,10 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Import  $import
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Import $import)
     {
         //
     }
@@ -86,10 +64,10 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Import  $import
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Import $import)
     {
         //
     }
@@ -97,10 +75,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Import  $import
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Import $import)
     {
         //
     }

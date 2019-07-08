@@ -1,9 +1,10 @@
-
 <?php
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-class CreateScanDepartmentsTable extends Migration
+
+class CreateEmployeesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +13,13 @@ class CreateScanDepartmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('scan_departments', function (Blueprint $table) {
+        Schema::create('employees', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 100);
+            $table->string('employeecode', 50);
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -24,6 +27,6 @@ class CreateScanDepartmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('scan_departments');
+        Schema::dropIfExists('employees');
     }
 }
