@@ -62,10 +62,13 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="is_admin" class="col-md-4 col-form-label text-md-right">{{ __('Is een shift-manager') }}</label>
-
+                                <label for="role_id" class="col-md-4 col-form-label text-md-right">{{ __('Kies rol') }}</label>
                                 <div class="col-md-6">
-                                    <input id="is_admin" type="checkbox" class="form-control" name="is_admin">
+                                    <select class="form-control" id="role_id" name="role_id">
+                                        @foreach ($roles as $role)
+                                            <option  id="{{$role->id}}" value="{{$role->id}}"> {{$role->name}}</option>
+                                            @endforeach
+                                    </select>
                                 </div>
                             </div>
 
