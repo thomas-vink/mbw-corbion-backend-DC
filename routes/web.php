@@ -21,10 +21,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('employees', 'EmployeeController');
     Route::resource('user', 'UserController');
 });
-
-// Route::get('/', function () {
-//     return redirect('/home');
-// });
+/*
+Route::get('/', function () {
+    return redirect('/home');
+});*/
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
