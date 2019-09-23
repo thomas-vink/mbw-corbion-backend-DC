@@ -20,7 +20,7 @@ class CreateScannedpointsTable extends Migration
             $table->unsignedBigInteger('operator_id');
             $table->foreign('operator_id')->references('id')->on('employees');
             $table->unsignedBigInteger('scanround_id');
-            $table->foreign('scanround_id')->references('id')->on('scan_rounds');
+            $table->foreign('scanround_id')->references('id')->on('scannedrounds');
             $table->unsignedBigInteger('Scanpoint_id');
             $table->foreign('scanpoint_id')->references('id')->on('scanpoints');
         });
