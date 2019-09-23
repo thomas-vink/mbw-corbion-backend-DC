@@ -11,7 +11,7 @@
 		<thead>
 			<tr>
 				<th scope="col">ScanPoints</th>
-				<th scope="col">Where</th>
+				<th scope="col">Location</th>
 			</tr>
 		</thead>
 		<tbody>

@@ -2,16 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Employee;
+use App\Role;
 use Illuminate\Http\Request;
 
-class EmployeeController extends Controller
+class RoleController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('admin:Spillteam')->except('index', 'show');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +14,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        return view('employee.index', ['Employees' => Employee::all()]);
+        //
     }
 
     /**
@@ -29,7 +24,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('employee.create');
+        //
     }
 
     /**
@@ -40,20 +35,16 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        $employee = new Employee;
-        $employee->name = request('name');
-        $employee->employeecode = request('employeecode');
-        $employee->save();
-        return redirect('/employees');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Employee  $employee
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function show(Employee $employee)
+    public function show(Role $role)
     {
         //
     }
@@ -61,39 +52,34 @@ class EmployeeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Employee  $employee
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit(Role $role)
     {
-        return view('employee.edit', ['employee' => $employee]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Employee  $employee
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(Request $request, Role $role)
     {
-        $employee->name = request('name');
-        $employee->employeecode = request('employeecode');
-        $employee->save();
-
-        return redirect('/employees');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Employee  $employee
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
-        Employee::destroy($id);
-        return redirect('/employees');
+        //
     }
 }

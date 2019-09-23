@@ -1,14 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <form style="display:inline-block" action="{{action('HomeController@importCsv')}}" method="get">
-        @csrf
-        <button type="submit" value="Submit" class="btn btn-secondary">Get scanfile</button>
-    </form>
-
+    
 <div class="row department-cards">
   @foreach($ScanDepartments as $ScanDepartment)
-    <div class="card col-sm-6 py-2 h-100">
+    <div class="card col-sm-6 h-400">
         <div class="card-body">
             <h5 class="card-title">{{ $ScanDepartment->name }}</h5>
                 <div class="table-wrapper-scroll-y my-custom-scrollbar">
@@ -23,9 +19,9 @@
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach ($Scanpoints as $Scanpoint)
-                        <tr>  
+                      @foreach ($Scanpoints as $Scanpoint) 
                           @if($Scanpoint->department_id === $ScanDepartment->id)
+                          <tr> 
                             <td>{{$Scanpoint->barcode}}</td>
                             <td>{{$Scanpoint->location}}</td>
                             <td></td>
@@ -40,7 +36,11 @@
     </div>
   @endforeach
 
-
+<!--<form style="display:inline-block" action="{{action('HomeController@importCsv')}}" method="get">
+        @csrf
+        <button type="submit" value="Submit" class="btn btn-secondary">Get scanfile</button>
+    </form>
+  -->
 </div>
 @endsection
 

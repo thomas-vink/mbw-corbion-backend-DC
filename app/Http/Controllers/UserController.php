@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\User;
+use App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -14,7 +15,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin')->except('index', 'show');
+        $this->middleware('admin:Shiftmanager')->except('index', 'show');
     }
     /**
      * Display a listing of the resource.
@@ -22,8 +23,10 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        $roles = Role::all();
         return view('user.index', ['users' => User::All()]);
+        
     }
 
     /**
@@ -33,7 +36,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        $roles = Role::all();
+        return view('user.create')->with(['roles' => $roles]);
     }
 
     /**
@@ -44,17 +48,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        if(!isset($request['is_admin'])){
-            $is_admin = "0";
-        }elseif($request['is_admin'] === "on") {
-            $is_admin = "1";
-        }
-
         $user = new User();
         $user->name = request('name');
         $user->username = request('username');
         $user->password = Hash::make(request('password'));
-        $user->is_admin = $is_admin;
+        $user->role_id = request('role_id');
         $user->save();
 
         return redirect('/user');
@@ -79,7 +77,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -102,6 +100,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+         try {
+            User::destroy($id);
+            return redirect('user')->with('success', 'User has been deleted!');
+        }
+        catch (\Illuminate\Database\QueryException $e) {
+            return redirect('user')->with('error', 'Failed to delete User.');
+        }
     }
 }

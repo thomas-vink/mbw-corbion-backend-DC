@@ -13,19 +13,19 @@ class departmentseeder extends Seeder
     {
         DB::table('scan_departments')->insert([
             'id'        => '1',
-            'name' => 'Department1',
+            'name' => 'Calp',
         ]);
         DB::table('scan_departments')->insert([
             'id'        => '2',
-            'name' => 'Department2',
+            'name' => 'Puma C',
         ]);
         DB::table('scan_departments')->insert([
             'id'        => '3',
-            'name' => 'Department3',
+            'name' => 'ETL/AWZ',
         ]);
         DB::table('scan_departments')->insert([
             'id'        => '4',
-            'name' => 'Department4',
+            'name' => 'MaXpro',
         ]);
     }
 }

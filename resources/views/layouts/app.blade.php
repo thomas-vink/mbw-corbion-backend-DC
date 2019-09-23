@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'laravel') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -77,10 +77,10 @@
                                     <a class="nav-link" href="#">Daily Percentage</a>
                                   </li>-->
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('employees.index') }}">{{ __('Werknemers') }}</a>
+                                        <a class="nav-link" href="{{ route('employees.index') }}">{{ __('Employees') }}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('user.index') }}">{{ __('Gebruikers') }}</a>
+                                        <a class="nav-link" href="{{ route('user.index') }}">{{ __('Users') }}</a>
                                     </li>
                                 </ul>
                               </div>

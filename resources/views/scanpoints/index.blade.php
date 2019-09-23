@@ -21,7 +21,7 @@
       <thead>
         <tr>
           <th scope="col">Barcode</th>
-          <th scope="col">Locatie</th>
+          <th scope="col">Location</th>
           <th scope="col">Department</th>
           <th scope="col">Option</th>
         </tr>
@@ -68,5 +68,8 @@
 
 
 
-
+<!--  @foreach($scandepartments as $scandepartment)  
+                <td>{{$scandepartment->name}}</td>
+                @endforeach
+-->
   
