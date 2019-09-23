@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateScanroundsTable extends Migration
+class ShiftTimesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateScanroundsTable extends Migration
      */
     public function up()
     {
-        Schema::create('scan_rounds', function (Blueprint $table) {
+        Schema::create('shifttimes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('shift_id');
-            $table->date('scanned_date');
-            $table->foreign('shift_id')->references('id')->on('shift_times');
-     
+            $table->integer('shift');
+            $table->time('startTime');
+            $table->time('endTime');
         });
     }
 
@@ -29,6 +28,6 @@ class CreateScanroundsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('scan_rounds');
+        //
     }
 }
