@@ -20,9 +20,9 @@ class ScanRoundController extends Controller
      */
     public function index()
     {
-        dd(Scannedpoint::all());
-      //  $foobar = new shiftChecker;  // correct
-      //  $foobar->getShift();
+      $shift = new shiftChecker;  // correct
+      $currentShift = $shift->getCurrentShift();
+      echo $currentShift;
     }
 
     /**     

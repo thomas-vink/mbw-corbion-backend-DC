@@ -21,7 +21,7 @@ class ScannedRoundsTable extends Migration
             $table->unsignedBigInteger('scanpoint_id');
             $table->foreign('scanpoint_id')->references('id')->on('scanpoints');
             $table->unsignedBigInteger('shifttime_id');
-            $table->foreign('shifttime_id')->references('id')->on('shifttimes');
+            $table->foreign('shifttime_id')->references('id')->on('shift_times');
         });
     }
 
