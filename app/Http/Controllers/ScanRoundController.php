@@ -20,9 +20,6 @@ class ScanRoundController extends Controller
      */
     public function index()
     {
-      $shift = new shiftChecker;  // correct
-      $currentShift = $shift->getCurrentShift();
-      echo $currentShift;
     }
 
     /**     

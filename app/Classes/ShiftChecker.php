@@ -19,7 +19,6 @@ class ShiftChecker
     public function __construct()
     {
         date_default_timezone_set("Europe/Amsterdam");
-
         $this->shifts = ShiftTimes::all();
         $this->currentTime = date("H:i:s");
         $this->start1 = $this->shifts[0]->startTime;
@@ -30,8 +29,19 @@ class ShiftChecker
         $this->end3 = $this->shifts[5]->endTime;
     }
 
+    // Check scanned time with shifttimes and return current shift
+    public function getCurrentShift($scantime)
+    {
+        if($scantime > $this->start1 && $scantime < $this->end1){
+            return $this->shifts[0]->shift;
+        }elseif($scantime > $this->start2 && $scantime < $this->end2){
+            return $this->shifts[2]->shift;
+        }elseif($scantime > $this->start3 && $scantime < $this->end3){
+            return $this->shifts[4]->shift;
+        }
+    }
     // Check current time with shifttimes and return current shift
-    public function getCurrentShift()
+    public function getShift()
     {
         if($this->currentTime > $this->start1 && $this->currentTime < $this->end1){
             return $this->shifts[0]->shift;
