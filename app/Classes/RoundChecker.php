@@ -52,11 +52,8 @@ class RoundChecker
     {
         foreach($scannedPoints as $scannedPoint)
         {
-            $test = 
-            log::info($scannedPoint['scanpoint_id']);
             if($scannedPoint['scanpoint_id'] == null)
             { 
-                log::info('dit is de e code');
             }
             else{
                 $scanned = new Scannedpoint;
