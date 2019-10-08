@@ -26,6 +26,7 @@ display: block;
 	float: left; 
 }
 
+
 .employee-list{
 	width: 75%;
 	float: left;
@@ -34,7 +35,6 @@ display: block;
 	width: 75%;
 	float: left; 
 }
-
 .create-card{
 	width: 25%;
 	right: 0;

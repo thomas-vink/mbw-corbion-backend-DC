@@ -28,6 +28,15 @@
                             <td></td>
                           @endif
                         </tr>
+                      @foreach ($Scanpoints as $Scanpoint)
+                        @if($Scanpoint->department_id === $ScanDepartment->id)
+                          <tr>
+                              <th>{{$Scanpoint->barcode}}</th>
+                              <td>{{$Scanpoint->location}}</td>
+                              <td></td>
+                              <td></td>
+                          </tr>
+                        @endif
                       @endforeach
                     </tbody>
                   </table>

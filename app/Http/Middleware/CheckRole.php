@@ -1,9 +1,6 @@
 <?php
-
 namespace App\Http\Middleware;
-
 use Closure;
-
 class CheckRole
 {
     /**
@@ -24,7 +21,6 @@ class CheckRole
         if($request->user()->role->name === 'Operator') {
             return redirect()->back()->with('error', 'Login met een shiftmanager of spillteam account om dit aan te kunnen passen.');
         }
-
         return $next($request);
     }
 }

@@ -12,14 +12,25 @@
 Auth::routes();
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/scanfile', 'HomeController@importCsv')->name('scanfile');
+    Route::get('/scanfile', 'HomeController@showFile')->name('scanfile');
     Route::resource('scandepartment', 'ScanDepartmentController');
     Route::resource('scanpoint', 'ScanpointController');
     Route::resource('employees', 'EmployeeController');
     Route::resource('user', 'UserController');
     Route::resource('overview', 'OverviewController');
 });
+
 Route::get('/', function () {
     return redirect('/home');
 });
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+/*
+Route::get('/', function () {
+    return redirect('/home');
+});*/
+
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+Route::post('/scanround' ,'ScanRoundController@create');
+Route::get('/scanround/test' ,'ScanRoundController@index');

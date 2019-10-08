@@ -3,20 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use App\Classes\RoundChecker;
+use App\Classes\ShiftChecker;
+use App\ScannedPoint;
+use App\Employee;
 
-use App\User;
-use App\Role;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
 
-class UserController extends Controller
+
+
+class ScanRoundController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('admin:Shiftmanager')->except('index', 'show');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -24,39 +21,33 @@ class UserController extends Controller
      */
     public function index()
     {   
-        $roles = Role::all();
-        return view('user.index', ['users' => User::All()]);
-        
+        $model = Employee::findOrFail(1);
+        $model = Employee::where('employeecode', 'E0069')->firstOrFail();
+        dd($model->id);
+      //  $foobar = new shiftChecker;  // correct
+      //  $foobar->getShift();
     }
 
-    /**
+    /**     
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $roles = Role::all();
-        return view('user.create')->with(['roles' => $roles]);
+    public function create(Request $request)
+    {   
+       
+        $data = RoundChecker::splicer($request);
+        $Scanround = new RoundChecker;
+        $Scanround->ScanroundBuilder($data);
     }
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-
-        $user = new User();
-        $user->name = request('name');
-        $user->username = request('username');
-        $user->password = Hash::make(request('password'));
-        $user->role_id = request('role_id');
-        $user->save();
-
-        return redirect('/user');
+        //
     }
 
     /**
@@ -78,7 +69,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        
+        //
     }
 
     /**
@@ -101,12 +92,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-         try {
-            User::destroy($id);
-            return redirect('user')->with('success', 'User has been deleted!');
-        }
-        catch (\Illuminate\Database\QueryException $e) {
-            return redirect('user')->with('error', 'Failed to delete User.');
-        }
+        //
     }
 }
