@@ -14,7 +14,7 @@
                       <tr>
                         <th scope="col">ScanPoint</th>
                         <th scope="col">Where</th>
-                        <th scope="col">Who</th>
+                        <!--<th scope="col">Who</th>-->
                         <th scope="col">Scans To Do</th>
                       </tr>
                     </thead>
@@ -24,7 +24,7 @@
                           <tr> 
                             <td>{{$Scanpoint->barcode}}</td>
                             <td>{{$Scanpoint->location}}</td>
-                            <td></td>
+                            <!--<td></td>-->
                             <td></td>
                           @endif
                         </tr>

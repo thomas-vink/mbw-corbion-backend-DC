@@ -17,6 +17,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('scanpoint', 'ScanpointController');
     Route::resource('employees', 'EmployeeController');
     Route::resource('user', 'UserController');
+    Route::resource('overview', 'OverviewController');
 });
 Route::get('/', function () {
     return redirect('/home');
