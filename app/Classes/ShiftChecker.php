@@ -43,7 +43,6 @@ class ShiftChecker
             dd("dit is 3 van".$this->Start3."tot".$this->End3);
         }
         else{
-            dd("kanker");
         }
     }
 }

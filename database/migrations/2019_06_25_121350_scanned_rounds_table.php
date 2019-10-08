@@ -15,7 +15,11 @@ class ScannedRoundsTable extends Migration
     {
         Schema::create('scannedrounds', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->date('scanneddate');
+            $table->dateTime('start');
+            $table->dateTime('end');
+            $table->date('day');
+            $table->integer('shift');
+            $table->integer('round');
             $table->unsignedBigInteger('employee_id');
             $table->foreign('employee_id')->references('id')->on('employees');
             $table->unsignedBigInteger('scanpoint_id');
