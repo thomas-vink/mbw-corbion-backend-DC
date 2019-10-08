@@ -8,18 +8,19 @@
     @endif
 
 
-    <h1>Werknemers</h1>
-    <div class="employee-list">
-    <table class="table table-bordered mb-0">
-        <thead>
-        <tr>
-            <th scope="col">Naam</th>
-            <th scope="col">Personeelsnummer</th>
-            <th scope="col">Aanpassen</th>
-        </tr>
-        </thead>
-        <tbody>
-        @if(isset($Employees))
+
+    <h1>Employees</h1>
+        <div class="employee-list">
+            <table class="table table-bordered mb-0">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Employee-Code</th>
+                        <th scope="col">Option</th>
+                    </tr>
+                </thead>
+            <tbody>
+            @if(isset($Employees))
             @foreach ($Employees as $Employee)
                 <tr>
                     <td>{{$Employee->name}}</td>
@@ -42,6 +43,7 @@
         @endif
         </tbody>
     </table>
+    
     </div>
     <div class="create-card">
         <div class="card-header">

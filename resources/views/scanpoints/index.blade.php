@@ -75,5 +75,8 @@
 
 
 
-
+<!--  @foreach($scandepartments as $scandepartment)  
+                <td>{{$scandepartment->name}}</td>
+                @endforeach
+-->
   

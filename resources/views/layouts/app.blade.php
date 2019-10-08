@@ -77,10 +77,10 @@
                                     <a class="nav-link" href="#">Daily Percentage</a>
                                   </li>-->
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('employees.index') }}">{{ __('Werknemers') }}</a>
+                                        <a class="nav-link" href="{{ route('employees.index') }}">{{ __('Employees') }}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('user.index') }}">{{ __('Gebruikers') }}</a>
+                                        <a class="nav-link" href="{{ route('user.index') }}">{{ __('Users') }}</a>
                                     </li>
                                 </ul>
                               </div>
