@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Log;
 use App\Classes\RoundChecker;
 use App\Classes\ShiftChecker;
 use App\ScannedPoint;
-use App\Employee;
 
 
 
@@ -20,12 +19,10 @@ class ScanRoundController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $model = Employee::findOrFail(1);
-        $model = Employee::where('employeecode', 'E0069')->firstOrFail();
-        dd($model->id);
-      //  $foobar = new shiftChecker;  // correct
-      //  $foobar->getShift();
+    {
+        $round = new RoundChecker();
+        $currentRound = $round->getRound();
+        dd($currentRound);
     }
 
     /**     
@@ -35,10 +32,11 @@ class ScanRoundController extends Controller
      */
     public function create(Request $request)
     {   
-       
+
         $data = RoundChecker::splicer($request);
-        $Scanround = new RoundChecker;
-        $Scanround->ScanroundBuilder($data);
+        log::info($data);
+        $roundChecker = new RoundChecker;
+        $roundChecker->putDatabase($data);
     }
     /**
      * Store a newly created resource in storage.
