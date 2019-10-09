@@ -48,7 +48,7 @@
                     <form style="display:inline-block"  action="{{action('ScanpointController@destroy', ['id' => $scanpoint->id])}}" method="post">
                       @csrf
                       @method('DELETE')
-                      <button type="submit" value="Submit" class="btn btn-danger">Delete</button>
+                      <button onclick="return confirm('Are you sure you want to Delete a ScanPoint?')" class="btn btn-danger" type="submit">Delete</button>
                     </form> 
                 </td> 
             </tr>

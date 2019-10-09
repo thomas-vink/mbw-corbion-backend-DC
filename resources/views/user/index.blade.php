@@ -7,11 +7,6 @@
         </div>
     @endif
     
-    <h1>Users index</h1>
-    <a href="/user/create">Nieuwe gebruiker aanmaken</a>
-    @foreach($users as $user)
-        <ul>
-
     @if (session('success'))
   <div class="alert alert-success">
     {{ session('success') }}

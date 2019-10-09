@@ -18,38 +18,25 @@
                         <th scope="col">Scans To Do</th>
                       </tr>
                     </thead>
+
                     <tbody>
                       @foreach ($Scanpoints as $Scanpoint) 
                           @if($Scanpoint->department_id === $ScanDepartment->id)
-                          <tr> 
+                          <tr>
                             <td>{{$Scanpoint->barcode}}</td>
                             <td>{{$Scanpoint->location}}</td>
                             <!--<td></td>-->
                             <td></td>
                           @endif
                         </tr>
-                      @foreach ($Scanpoints as $Scanpoint)
-                        @if($Scanpoint->department_id === $ScanDepartment->id)
-                          <tr>
-                              <th>{{$Scanpoint->barcode}}</th>
-                              <td>{{$Scanpoint->location}}</td>
-                              <td></td>
-                              <td></td>
-                          </tr>
-                        @endif
-                      @endforeach
+                      @endforeach 
                     </tbody>
+
                   </table>
                 </div>                      
         </div>
     </div>
   @endforeach
-
-<!--<form style="display:inline-block" action="{{action('HomeController@importCsv')}}" method="get">
-        @csrf
-        <button type="submit" value="Submit" class="btn btn-secondary">Get scanfile</button>
-    </form>
-  -->
 </div>
 @endsection
 
