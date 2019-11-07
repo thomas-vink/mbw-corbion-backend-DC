@@ -11,10 +11,16 @@ class ScanRoundTableSeeder extends Seeder
      */
     public function run()
     {
+   
+        DB::table('scan_rounds')->insert([
+            'id'        => '1',
+            'shift_id' => '1',
+
         DB::table('scan_rounds')->insert([
             'id'        => '1',
             'shift_id' => '1',
             'scanned_date' => '2019-03-03',
+
         ]);
         DB::table('scan_rounds')->insert([
             'id'        => '2',

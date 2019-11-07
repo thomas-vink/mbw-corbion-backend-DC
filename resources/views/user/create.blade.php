@@ -5,14 +5,14 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Nieuwe gebruiker aanmaken') }}</div>
+                    <div class="card-header">{{ __('Create a new User') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('user.store') }}">
                             @csrf
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Naam') }}</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
@@ -26,7 +26,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Gebruikersnaam') }}</label>
+                                <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="username" type="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required>
@@ -40,7 +40,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Wachtwoord') }}</label>
+                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
@@ -54,7 +54,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Herhaal wachtwoord') }}</label>
+                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Repeat Password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
@@ -62,7 +62,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="role_id" class="col-md-4 col-form-label text-md-right">{{ __('Kies rol') }}</label>
+                                <label for="role_id" class="col-md-4 col-form-label text-md-right">{{ __('Pick a Role') }}</label>
                                 <div class="col-md-6">
                                     <select class="form-control" id="role_id" name="role_id">
                                         @foreach ($roles as $role)
@@ -74,8 +74,8 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Aanmaken') }}
+                                    <button type="submit" class="btn btn-success">
+                                        {{ __('Create') }}
                                     </button>
                                 </div>
                             </div>

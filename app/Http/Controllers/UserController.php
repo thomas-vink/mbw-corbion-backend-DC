@@ -23,8 +23,10 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        $roles = Role::all();
         return view('user.index', ['users' => User::All()]);
+        
     }
 
     /**
@@ -76,7 +78,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -99,6 +101,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+         try {
+            User::destroy($id);
+            return redirect('user')->with('success', 'User has been deleted!');
+        }
+        catch (\Illuminate\Database\QueryException $e) {
+            return redirect('user')->with('error', 'Failed to delete User.');
+        }
     }
 }

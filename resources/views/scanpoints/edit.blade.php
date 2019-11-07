@@ -9,7 +9,8 @@
             <div class="card-body">
                 <input class="form-control form-control-lg w-100" type="text" name="barcode" placeholder="Barcode" required="required" value="{{$ScanPoint->barcode}}">
                 <input class="form-control form-control-lg w-100" type="text" name="location" placeholder="Location" required="required" value="{{$ScanPoint->location}}">
-                <select name="scandepartment">
+
+                <select name="scandepartment" class="col-md-4 col-form-label text-md-right">
                     @foreach ($ScanDepartments as $ScanDepartment)
                         @if ($ScanDepartment->id === $ScanPoint->department_id)
                             <option selected="selected" value="{{$ScanDepartment->id}}">{{$ScanDepartment->name}}</option>
@@ -18,6 +19,7 @@
                         @endif
                     @endforeach
               </select>
+
             </div>
             <div>
                 <button type="submit" value="Submit" class="btn btn-success">Save</button>
