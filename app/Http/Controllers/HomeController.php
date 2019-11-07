@@ -5,6 +5,10 @@ use App\ScanDepartment;
 use App\Scanpoint;
 use App\ScanRound;
 use App\ScannedPoint;
+use App\Employee;
+use Illuminate\Support\Facades\DB;
+
+
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,8 +30,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
-        return view('home', ['ScanDepartments' => ScanDepartment::all(), 'Scanpoints' => Scanpoint::all()]);
+       
+        $scannedpoints = DB::table('scanpoints')
+                ->leftJoin('scanned_points', 'Scanpoint_id', '=', 'scanpoints.id')
+                ->leftJoin('scan_departments', 'scan_departments.id', '=', 'scanpoints.department_id')
+                ->get();
+        return view('home', ['ScanDepartments' => ScanDepartment::all(), 'Scanpoints' => $scannedpoints]);
     }
 
    
