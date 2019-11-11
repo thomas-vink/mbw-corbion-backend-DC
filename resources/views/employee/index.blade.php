@@ -34,12 +34,12 @@
                     <td>
                         <form style="display:inline-block" action="{{action('EmployeeController@edit', ['id' => $Employee->id])}}" method="get">
                             @csrf
-                            <button type="submit" value="Submit" class="btn btn-secondary">Edit</button>
+                            <button type="submit" value="Submit" class="btn btn-secondary btn-sm">Edit</button>
                         </form>
                         <form style="display:inline-block" action="{{action('EmployeeController@destroy', ['id' => $Employee->id])}}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" value="Submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" value="Submit" class="btn btn-danger btn-sm">Delete</button>
                         </form>
                     </td>
                 </tr>

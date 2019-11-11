@@ -36,8 +36,8 @@
                                     <form style="display:inline-block" action="{{action('UserController@destroy', ['id' => $user->id])}}" method="post"> 
                                         @csrf
                                         @method('DELETE')
-                                <button onclick="return confirm('Are you sure you want to Delete a ScanDepartment?')" class="btn btn-danger" type="submit">Delete</button>
-                            </form>                               
+                                <button onclick="return confirm('Are you sure you want to Delete a User?')" class="btn btn-danger btn-sm" type="submit">Delete</button>
+                            </form>                                 
                                 </td>       
                             </tr>
                     @endforeach

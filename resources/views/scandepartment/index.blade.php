@@ -27,12 +27,12 @@
             		<tr>
                         <td>{{ $ScanDepartment->name }}</td>
                         <td>
-                        	<a href="/scandepartment/{{$ScanDepartment->id}}/" class="btn btn-secondary">View</a> 
-                        	<a href="/scandepartment/{{$ScanDepartment->id}}/edit" class="btn btn-secondary">Edit</a> 
+                        	<a href="/scandepartment/{{$ScanDepartment->id}}/" class="btn btn-secondary btn-sm">View</a> 
+                        	<a href="/scandepartment/{{$ScanDepartment->id}}/edit" class="btn btn-secondary btn-sm">Edit</a> 
                         	<form style="display:inline-block" action="{{action('ScanDepartmentController@destroy', ['id' => $ScanDepartment->id])}}" method="post">
 								@csrf
 								@method('DELETE')
-								<button onclick="return confirm('Are you sure you want to Delete a ScanDepartment?')" class="btn btn-danger" type="submit">Delete</button>
+								<button onclick="return confirm('Are you sure you want to Delete a ScanDepartment?')" class="btn btn-danger btn-sm" type="submit">Delete</button>
 							</form>
 						</td>		
             		</tr>

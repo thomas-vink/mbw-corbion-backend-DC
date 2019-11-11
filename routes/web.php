@@ -18,6 +18,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('employees', 'EmployeeController');
     Route::resource('user', 'UserController');
     Route::resource('overview', 'OverviewController');
+    Route::resource('overruled', 'OverruledController');
 });
 
 Route::get('/', function () {

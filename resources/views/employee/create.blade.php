@@ -2,16 +2,44 @@
 
 @section('content')
 
-    <h1>Nieuwe medewerker aanmaken</h1>
-    <form action="{{ route('employees.store') }}" method="POST">
-        {{ csrf_field() }}
-        <div>
-            <input type="text" name="name" placeholder="Naam" required="required">
-            <input type="text" name="employeecode" placeholder="Personeelsnummer" required="required">
-        </div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Create an Employee') }}</div>
+                    <div class="card-body">
 
-        <div>
-            <button type="submit" value="submit" class="btn btn-success">Save</button>
+                            <form action="{{ route('employees.store') }}" method="POST">
+                                {{ csrf_field() }}
+
+                                <div class="form-group row">
+                                    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+
+                                    <div>
+                                        <input class="form-control form-control-lg" type="text" name="name" placeholder="Name" required="required">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('EmployeeCode') }}</label>
+
+                                    <div>
+                                        <input class="form-control form-control-lg" type="text" name="employeecode" placeholder="EmployeeCode" required="required">
+                                    </div>
+                                </div>
+
+                                    <div class="form-group row mb-0">
+                                        <div class="col-md-6 offset-md-4">
+                                             <button type="submit" value="Submit" class="btn btn-success">Save</button>
+                                        </div>
+                                    </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
-    </form>
+    </div>
+
+
 @endsection
+

@@ -15,27 +15,20 @@
   </div>
 @endif
 
-
-    @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
-
 <h1>ScanPoints</h1>
 <div class="scanpoint-list">
   <table class="table table-bordered mb-0">
       <thead>
         <tr>
           <th scope="col">Barcode</th>
-          <th scope="col">Locatie</th>
+          <th scope="col">Location</th>
           <th scope="col">Department</th>
           <th scope="col">Option</th>
         </tr>
       </thead>
       <tbody>
         @if(isset($scanpoints))
-          @foreach ($scanpoints as $scanpoint)
+            @foreach($scanpoints as $scanpoint)
             <tr>
                 <td>{{$scanpoint->barcode}}</td>
                 <td>{{$scanpoint->location}}</td>
@@ -43,12 +36,12 @@
                 <td>   
                     <form style="display:inline-block" action="{{action('ScanpointController@edit', ['id' => $scanpoint->id])}}" method="get">
                         @csrf
-                        <button type="submit" value="Submit" class="btn btn-secondary">Edit</button>
+                        <button type="submit" value="Submit" class="btn btn-secondary btn-sm">Edit</button>
                     </form> 
                     <form style="display:inline-block"  action="{{action('ScanpointController@destroy', ['id' => $scanpoint->id])}}" method="post">
                       @csrf
                       @method('DELETE')
-                      <button onclick="return confirm('Are you sure you want to Delete a ScanPoint?')" class="btn btn-danger" type="submit">Delete</button>
+                      <button onclick="return confirm('Are you sure you want to Delete a ScanPoint?')" class="btn btn-danger btn-sm" type="submit">Delete</button>
                     </form> 
                 </td> 
             </tr>
