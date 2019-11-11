@@ -5,17 +5,22 @@ use App\ShiftTimes;
 use App\Scanpoint;
 use App\ScannedPoint;
 use App\ScanRound;
-
+use App\Classes\ShiftChecker;
 
 
 class RoundChecker
 {
-    function __construct() {
+    private $today;
 
+    function __construct() {
+        date_default_timezone_set("Europe/Amsterdam");
+
+        $this->today = date("Y-m-d H:i:s");
     }
 
     public static function splicer($request)
     {
+        Log::info($request);
         $count = 0;
         $scannedPoints;
 
@@ -64,5 +69,27 @@ class RoundChecker
         }
     }
 
+    public function createRound($request)
+    {
+        Log::info($request[0]);
+        //$scantime = $request[2];
 
+        $shift = new ShiftChecker();
+        //$shiftID = $shift->getCurrentShift($scantime);
+
+        $rounds = ScanRound::all();
+        $round = new ScanRound();
+        $round->start = $this->today;
+        $round->end = $this->today;
+        $round->day = $this->today;
+        $round->shift = 3;
+        $round->round = 2;
+        $round->shifttime_id = '1';
+        $round->save();
+    }
+
+    public function checkRound()
+    {
+
+    }
 }

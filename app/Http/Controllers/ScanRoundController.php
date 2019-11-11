@@ -20,6 +20,8 @@ class ScanRoundController extends Controller
      */
     public function index()
     {
+        $round = new RoundChecker();
+        $currentRound = $round->createRound();
     }
 
     /**     
@@ -28,12 +30,10 @@ class ScanRoundController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
-    {   
-
+    {
         $data = RoundChecker::splicer($request);
-        log::info($data);
         $roundChecker = new RoundChecker;
-        $roundChecker->putDatabase($data);
+        $roundChecker->createRound($data);
     }
     /**
      * Store a newly created resource in storage.
