@@ -28,17 +28,6 @@ class departmentseeder extends Seeder
             'name' => 'MaXpro',
             'name' => 'Department1',
         ]);
-        DB::table('scan_departments')->insert([
-            'id'        => '2',
-            'name' => 'Department2',
-        ]);
-        DB::table('scan_departments')->insert([
-            'id'        => '3',
-            'name' => 'Department3',
-        ]);
-        DB::table('scan_departments')->insert([
-            'id'        => '4',
-            'name' => 'Department4',
-        ]);
+
     }
 }

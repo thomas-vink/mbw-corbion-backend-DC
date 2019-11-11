@@ -13,16 +13,14 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(departmentseeder::class);
         $this->call(ScanpointSeeder::class);
-        $this->call(ShifttimeTableSeeder::class);
-        $this->call(EmployeeTableSeeder::class);
-
-        $this->call(ScanRoundTableSeeder::class);
-        $this->call(ScannedpointsTableSeeder::class);
-        $this->call(ShiftTimesTableSeeder::class);
-        $this->call(ScannedRoundsTableSeeder::class);
-        //$this->call(ScannedpointsTableSeeder::class);
         $this->call(RolesTableSeeder::class);
         $this->call(UsersTableSeeder::class);
+        $this->call(ShiftTimesTableSeeder::class);
+        $this->call(EmployeeTableSeeder::class);
+
+        $this->call(ScannedRoundsTableSeeder::class);
+        $this->call(ScannedpointsTableSeeder::class);
+
 
 
 
