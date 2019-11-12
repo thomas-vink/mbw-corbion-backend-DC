@@ -26,7 +26,6 @@ class departmentseeder extends Seeder
         DB::table('scan_departments')->insert([
             'id'        => '4',
             'name' => 'MaXpro',
-            'name' => 'Department1',
         ]);
 
     }
