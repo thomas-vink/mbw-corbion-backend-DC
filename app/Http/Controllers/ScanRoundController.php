@@ -21,11 +21,8 @@ class ScanRoundController extends Controller
      */
     public function index()
     {   
-        $model = Employee::findOrFail(1);
-        $model = Employee::where('employeecode', 'E0069')->firstOrFail();
-        dd($model->id);
-      //  $foobar = new shiftChecker;  // correct
-      //  $foobar->getShift();
+        dd(ScannedPoint::all());
+       // return view(scannedpoints.index)->with(["scannedpoints" => ScannedPoint::all()]);
     }
 
     /**     

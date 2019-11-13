@@ -12,9 +12,11 @@ class RoundChecker
     function __construct() {
 
     }
-    
+        
     public static function splicer($request)
     {
+        
+        
         $count = 0;
         $scannedPoints;
 
@@ -22,12 +24,14 @@ class RoundChecker
         {
             $exploded = explode(',', $row);
             $scannedPoints[$count] = array( 
-                'barcode'  => $exploded[0],
+                'barcode'  =>  substr($exploded[0],1,-1),
                 'time'  =>  substr($exploded[1],2,-1),
                 'date' => substr( $exploded[2],1,-1),
              );
             $count++;
         }
+        Log::info($request); 
+        Log::info($scannedPoints);
         return $scannedPoints;  
     }
 
@@ -58,7 +62,8 @@ class RoundChecker
             else{
                 $scanned = new Scannedpoint;
                 $scanned->scanned_time = $scannedPoint['time'];
-                $scanned->scanround_id = 3;
+                $scanned->scanned_at = date("Y-m-d");
+                $scanned->scanround_id = 4;
                 $scanned->operator_id =  $scannedPoint['employee_id'];
                 $scanned->Scanpoint_id = $scannedPoint['scanpoint_id'];
                 $scanned->save();
