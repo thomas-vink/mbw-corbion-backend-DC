@@ -8,9 +8,6 @@ use App\Classes\RoundChecker;
 use App\Classes\ShiftChecker;
 use App\ScannedPoint;
 
-
-
-
 class ScanRoundController extends Controller
 {
     /**
@@ -22,6 +19,7 @@ class ScanRoundController extends Controller
     {
         $round = new RoundChecker();
         $currentRound = $round->createRound();
+        echo $currentRound;
     }
 
     /**     
