@@ -50,7 +50,7 @@ class ScanpointController extends Controller
         $name->location = request('location');
         $name->department_id = request('scandepartment');
         $name->save();
-        return redirect('/scanpoint');
+        return redirect('/scanpoint')->with('success', 'ScanPoint has been created!');
     }
 
     /**
@@ -92,7 +92,7 @@ class ScanpointController extends Controller
 			$Scanpoint->department_id = request('scandepartment');
 			$Scanpoint->save();
 			// redirect
-			return redirect('/scanpoint');
+			return redirect('/scanpoint')->with('success', 'ScanPoint has been updated!');
 		
     }
 
@@ -105,6 +105,6 @@ class ScanpointController extends Controller
     public function destroy($id)
     {
         Scanpoint::destroy($id);
-        return redirect('/scanpoint');
+        return redirect('/scanpoint')->with('success', 'ScanPoint has been deleted!');
     }
 }

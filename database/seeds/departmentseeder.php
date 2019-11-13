@@ -27,6 +27,5 @@ class departmentseeder extends Seeder
             'id'        => '4',
             'name' => 'MaXpro',
         ]);
-
     }
 }
