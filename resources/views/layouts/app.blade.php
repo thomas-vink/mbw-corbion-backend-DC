@@ -82,6 +82,9 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('user.index') }}">{{ __('Users') }}</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('overruled.index') }}">{{ __('Overruled') }}</a>
+                                    </li>
                                 </ul>
                               </div>
                     </ul>

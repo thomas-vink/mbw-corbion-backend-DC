@@ -44,7 +44,7 @@ class EmployeeController extends Controller
         $employee->name = request('name');
         $employee->employeecode = request('employeecode');
         $employee->save();
-        return redirect('/employees');
+        return redirect('/employees')->with('success', 'Employee has been created!');
     }
 
     /**
@@ -82,7 +82,7 @@ class EmployeeController extends Controller
         $employee->employeecode = request('employeecode');
         $employee->save();
 
-        return redirect('/employees');
+        return redirect('/employees')->with('success', 'Employee has been updated!');
     }
 
     /**
@@ -94,6 +94,6 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         Employee::destroy($id);
-        return redirect('/employees');
+        return redirect('/employees')->with('success', 'Employee has been deleted!');
     }
 }

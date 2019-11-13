@@ -7,11 +7,6 @@
         </div>
     @endif
     
-    <h1>Users index</h1>
-    <a href="/user/create">Nieuwe gebruiker aanmaken</a>
-    @foreach($users as $user)
-        <ul>
-
     @if (session('success'))
   <div class="alert alert-success">
     {{ session('success') }}
@@ -41,8 +36,8 @@
                                     <form style="display:inline-block" action="{{action('UserController@destroy', ['id' => $user->id])}}" method="post"> 
                                         @csrf
                                         @method('DELETE')
-                                <button onclick="return confirm('Are you sure you want to Delete a ScanDepartment?')" class="btn btn-danger" type="submit">Delete</button>
-                            </form>                               
+                                <button onclick="return confirm('Are you sure you want to Delete a User?')" class="btn btn-danger btn-sm" type="submit">Delete</button>
+                            </form>                                 
                                 </td>       
                             </tr>
                     @endforeach

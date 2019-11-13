@@ -8,7 +8,7 @@ class ScanDepartmentController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin')->except('index', 'show');
+        $this->middleware('admin:Spillteam')->except('index', 'show');
     }
     /**
      * Display a listing of the resource.
@@ -39,7 +39,7 @@ class ScanDepartmentController extends Controller
         $name = new ScanDepartment;
         $name->name = request('name');
         $name->save();
-        return redirect('/scandepartment');
+        return redirect('/scandepartment')->with('success', 'ScanDepartment has been created!');
     }
     /**
      * Display the specified resource.
@@ -76,7 +76,7 @@ class ScanDepartmentController extends Controller
                 $scanDepartment->name = request('name');
                 $scanDepartment->save();
 
-        return redirect('/scandepartment');
+        return redirect('/scandepartment')->with('success', 'ScanDepartment has been updated!');
     }
     /**
      * Remove the specified resource from storage.
