@@ -12,14 +12,11 @@ class RoundChecker
     function __construct() {
 
     }
-        
+    //removes semicollen from data 
     public static function splicer($request)
     {
-        
-        
         $count = 0;
         $scannedPoints;
-
         foreach($request->input() as $row)
         {
             $exploded = explode(',', $row);
@@ -35,9 +32,44 @@ class RoundChecker
         return $scannedPoints;  
     }
 
+    //check if employee code exists
+    public function checkEmployee($data)
+    {
+
+        foreach($data as $scannedcode)
+        {
+           $code= substr($scannedcode['barcode'] ,-5,1);
+           if($code === "E")
+           {
+               $id = Employee::findOrFail(1);
+               $id = Employee::where('employeecode',  $scannedcode['barcode'])->firstOrFail();
+               unset($scannedcode);
+               return($id);
+           }
+           else
+           {
+            $this->msg('hello world');
+
+           }
+        }
+
+    }
+
+    //checks barcodes if they exist if exists returns id 
+    public function getPointID($barcode)
+    {
+        foreach(Scanpoint::all() as $Scanpoint)
+        {
+            if($barcode == $Scanpoint->barcode)
+            {
+                return($Scanpoint->id);
+            }
+        }
+    }
+
     public function ScanroundBuilder($data)
     {
-        $employee = $this->findEmployee($data);
+        $employee = $this->checkEmployee($data);
         $count = 0;
         foreach($data as $scanpoint)
         {
@@ -71,30 +103,13 @@ class RoundChecker
         }
     }
 
-    public function findEmployee($data)
-    {
-        foreach($data as $scannedcode)
-        {
-           $code= substr($scannedcode['barcode'] ,-5,1);
-           if($code === "E"){
-               $id = Employee::findOrFail(1);
-               $id = Employee::where('employeecode',  $scannedcode['barcode'])->firstOrFail();
-               unset($scannedcode);
-               return($id);
-           }
-        }
-    }
 
-    public function getPointID($barcode)
-    {
-        foreach(Scanpoint::all() as $Scanpoint)
-        {
-            if($barcode == $Scanpoint->barcode)
-            {
-                return($Scanpoint->id);
-            }
-        }
-    }
 
+
+
+    public function msg()
+    {
+        return response('hello world');
+    }
 
 }

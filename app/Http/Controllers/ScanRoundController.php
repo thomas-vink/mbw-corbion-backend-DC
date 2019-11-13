@@ -36,6 +36,8 @@ class ScanRoundController extends Controller
         $data = RoundChecker::splicer($request);
         $Scanround = new RoundChecker;
         $Scanround->ScanroundBuilder($data);
+        $Scanround->msg();
+
     }
     /**
      * Store a newly created resource in storage.
