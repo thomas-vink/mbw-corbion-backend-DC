@@ -19,7 +19,8 @@ class ScanRoundController extends Controller
     {
         $round = new RoundChecker();
         $currentRound = $round->createRound();
-        echo $currentRound;
+        $currentRound = $round->getRound();
+        dd($currentRound);
     }
 
     /**     

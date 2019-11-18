@@ -6,7 +6,7 @@ use App\Scanpoint;
 use App\ScannedPoint;
 use App\ScanRound;
 use App\Classes\ShiftChecker;
-
+use App\Employee;
 
 class RoundChecker
 {
@@ -36,7 +36,7 @@ class RoundChecker
             '5' => date("Y-m-d 21:59:59"),
         ];
     }
-
+    
     public static function splicer($request)
     {
         $count = 0;
@@ -46,33 +46,61 @@ class RoundChecker
         {
             $exploded = explode(',', $row);
             $scannedPoints[$count] = array( 
-                'barcode'  => substr($exploded[0],1),
-                'time'  =>  substr($exploded[1],2,-3),
-                'date' => substr( $exploded[2],2,-3),
+                'barcode'  => $exploded[0],
+                'time'  =>  substr($exploded[1],2,-1),
+                'date' => substr( $exploded[2],1,-1),
              );
             $count++;
         }
         return $scannedPoints;  
     }
 
-    public function putDatabase($scanPoints)
+    public function ScanroundBuilder($data)
     {
-        foreach($scanPoints as $scanPoint)
+        $employee = $this->findEmployee($data);
+        $count = 0;
+        foreach($data as $scanpoint)
         {
-            $scanpointId = $this->getPointID($scanPoint['barcode']);
-            if (isset($scanpointId))
-            {
-                $name = new Scannedpoint;
-                $name->scanned_at = $scanPoint['time'];
-                $name->scanround_id = 1;
-                $name->operator_id = 1;
-                $name->Scanpoint_id = $scanpointId;
-                $name->save();
+            $scannedPoints[$count] = array( 
+                'barcode'  => $scanpoint['barcode'],
+                'time'  => $scanpoint['time'],
+                'date' => $scanpoint['date'],
+                'scanpoint_id' => $this->getPointID($scanpoint['barcode']),
+                'employee_id' => $employee->id,
+             );
+            $count++;
+        }
+        $this->putDatabase($scannedPoints);
+    }
+    public function putDatabase($scannedPoints)
+    {
+        foreach($scannedPoints as $scannedPoint)
+        {
+            if($scannedPoint['scanpoint_id'] == null)
+            { 
             }
-            else
-            {
-                return("onbekende barcode");
+            else{
+                $scanned = new Scannedpoint;
+                $scanned->scanned_time = $scannedPoint['time'];
+                $scanned->scanround_id = 3;
+                $scanned->operator_id =  $scannedPoint['employee_id'];
+                $scanned->Scanpoint_id = $scannedPoint['scanpoint_id'];
+                $scanned->save();
             }
+        }
+    }
+
+    public function findEmployee($data)
+    {
+        foreach($data as $scannedcode)
+        {
+           $code= substr($scannedcode['barcode'] ,-5,1);
+           if($code === "E"){
+               $id = Employee::findOrFail(1);
+               $id = Employee::where('employeecode',  $scannedcode['barcode'])->firstOrFail();
+               unset($scannedcode);
+               return($id);
+           }
         }
     }
 
