@@ -5,6 +5,7 @@ use App\ShiftTimes;
 use App\Scanpoint;
 use App\ScannedPoint;
 use App\ScanRound;
+use App\Employee;
 use App\Classes\ShiftChecker;
 
 
@@ -92,9 +93,6 @@ class RoundChecker
         $round = 1;
         $count = 0;
         foreach($this->startTimes as $startTime){
-            //echo "Count is " . $count;
-            //echo " Start tijd is " . $startTime;
-            //echo "<br>";
             if($this->now > $startTime && $this->now < $this->endTimes[$count]){
                 $scanRound = ScanRound::firstOrCreate([
                     "day" => $this->today,
@@ -109,5 +107,37 @@ class RoundChecker
             $count++;
             $round++;
         }
+    }
+
+    public function exportToCsv($request)
+    {
+        $count = 0;
+        $startDate = $request->startDate;
+        $endDate = $request->endDate;
+        $scanRounds = $this->rounds->whereBetween("day", [$startDate, $endDate] );
+
+        foreach($scanRounds as $scanRound){
+            $scannedPoints = ScannedPoint::where('scanround_id', $scanRound->id)->get();
+            foreach($scannedPoints as $scannedPoint){
+                $employee = Employee::find($scannedPoint->operator_id);
+                $scanPoint = Scanpoint::find($scannedPoint->Scanpoint_id);
+                $scannedRounds[$count] = array(
+                    "day" => $scanRound->day,
+                    "operator" => $employee->name,
+                    "scanpoint" => $scanPoint->location,
+                    "scantime" => $scannedPoint->scanned_time,
+                );
+            }
+            $count++;
+        }
+
+        $fp = fopen('Export '.$this->today.' '.$startDate.' '.$endDate.'.csv', 'w');
+
+        foreach($scannedRounds as $round){
+            fputcsv($fp, $round);
+        }
+        fclose($fp);
+
+        return redirect('/scanround')->with('success', 'Exporteren is gelukt!');
     }
 }

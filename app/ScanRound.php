@@ -14,6 +14,7 @@ class ScanRound extends Model
         'shifttime_id',
     ];
     public $timestamps = false;
+
     public function ScannedPoint()
     {
         return $this->belongsTo('App\ScannedPoint');

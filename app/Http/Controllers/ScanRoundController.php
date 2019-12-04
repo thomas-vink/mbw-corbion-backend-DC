@@ -18,8 +18,9 @@ class ScanRoundController extends Controller
     public function index()
     {
         $round = new RoundChecker();
-        $currentRound = $round->createRound();
-        echo $currentRound;
+        //$currentRound = $round->exportToCsv();
+
+        return view('scanround.index');
     }
 
     /**     
@@ -31,7 +32,7 @@ class ScanRoundController extends Controller
     {
         $data = RoundChecker::splicer($request);
         $roundChecker = new RoundChecker;
-        $roundChecker->createRound($data);
+        $roundCheckercreateRound($data);
     }
     /**
      * Store a newly created resource in storage.
@@ -40,7 +41,10 @@ class ScanRoundController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $roundChecker = new RoundChecker;
+        $dates = $roundChecker->exportToCsv($request);
+
+        return view('scanround.index');
     }
 
     /**
