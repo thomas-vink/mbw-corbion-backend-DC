@@ -18,9 +18,15 @@ class ScanRoundController extends Controller
     public function index()
     {
         $round = new RoundChecker();
+
         //$currentRound = $round->exportToCsv();
 
         return view('scanround.index');
+
+        $currentRound = $round->createRound();
+        $currentRound = $round->getRound();
+        dd($currentRound);
+
     }
 
     /**     
