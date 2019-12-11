@@ -9,48 +9,51 @@ use App\Employee;
 
 class RoundChecker
 {
-    function __construct() {
 
-    }
+    public $msg;
+
     //removes semicollen from data 
-    public static function splicer($request)
+    public function splicer($request)
     {
-        $count = 0;
-        $scannedPoints;
+        log::info($request);
+        $counter = 0;
+        $scannedPoints = [];
         foreach($request->input() as $row)
         {
             $exploded = explode(',', $row);
-            $scannedPoints[$count] = array( 
+            $scannedPoints[$counter] = array( 
                 'barcode'  =>  substr($exploded[0],1,-1),
                 'time'  =>  substr($exploded[1],2,-1),
                 'date' => substr( $exploded[2],1,-1),
              );
-            $count++;
+            $counter++;
         }
-        Log::info($request); 
-        Log::info($scannedPoints);
         return $scannedPoints;  
     }
 
     //check if employee code exists
     public function checkEmployee($data)
     {
-
         foreach($data as $scannedcode)
         {
+        $employeeID;
            $code= substr($scannedcode['barcode'] ,-5,1);
-           if($code === "E")
-           {
-               $id = Employee::findOrFail(1);
-               $id = Employee::where('employeecode',  $scannedcode['barcode'])->firstOrFail();
-               unset($scannedcode);
-               return($id);
-           }
-           else
-           {
-            $this->msg('hello world');
-
-           }
+            if($code === "E")
+            {
+                $id = Employee::findOrFail(1);
+                $id = Employee::where('employeecode',  $scannedcode['barcode'])->firstOrFail();
+                unset($scannedcode);
+                $employeeID = $id;
+                break;
+            }
+        }
+        if(isset($employeeID))
+        {
+            return($employeeID);
+        }
+        else
+        {
+            $this->msg = "'error user not found',417";
         }
 
     }
@@ -66,30 +69,39 @@ class RoundChecker
             }
         }
     }
-
+  
     public function ScanroundBuilder($data)
     {
         $employee = $this->checkEmployee($data);
-        $count = 0;
-        foreach($data as $scanpoint)
+
+        // in case of an error ealier, do not execute this block.
+        if(!isset($this->msg))
         {
-            $scannedPoints[$count] = array( 
-                'barcode'  => $scanpoint['barcode'],
-                'time'  => $scanpoint['time'],
-                'date' => $scanpoint['date'],
-                'scanpoint_id' => $this->getPointID($scanpoint['barcode']),
-                'employee_id' => $employee->id,
-             );
-            $count++;
+            $counter = 0;
+            $scannedPoints = [];
+            foreach($data as $scanpoint)
+            {
+                $scannedPoints[$counter] = array( 
+                    'barcode'  => $scanpoint['barcode'],
+                    'time'  => $scanpoint['time'],
+                    'date' => $scanpoint['date'],
+                    'scanpoint_id' => $this->getPointID($scanpoint['barcode']),
+                    'employee_id' => $employee->id,
+                );
+                $counter++;
+            }
+            $this->putDatabase($scannedPoints);
         }
-        $this->putDatabase($scannedPoints);
     }
+
+    
     public function putDatabase($scannedPoints)
     {
         foreach($scannedPoints as $scannedPoint)
         {
             if($scannedPoint['scanpoint_id'] == null)
             { 
+                $this->msg = "'No scanpoints detected',417";
             }
             else{
                 $scanned = new Scannedpoint;
@@ -102,14 +114,18 @@ class RoundChecker
             }
         }
     }
-
-
-
-
-
-    public function msg()
+    
+    public function getResultMsg()
     {
-        return response('hello world');
+        if (isset($this->msg))
+        {
+            return($this->msg);
+        }
+        else
+        {
+            return("'succes',200");
+        }
+
     }
 
 }
